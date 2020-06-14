@@ -10,6 +10,7 @@ export default function App (){
   const addGoalHandler = (goalTitle) => {
     setCourseGoals(currentGoals => [...currentGoals, { id:Math.random().toString(), value:goalTitle }
       ]);
+    setModalVisible(false)
   };
 
   const removeGoalHandler = (goalId) => {
@@ -17,12 +18,17 @@ export default function App (){
       return currentGoals.filter((goal) => goal.id != goalId);
     });
   };
+
+  const cancelGoalAddition = () => {
+    setModalVisible(false)
+  }
   return (
     <View style={styles.screen}>
       <Button title="Add New Goal" onPress={() => setModalVisible(true)}/>
       <GoalInput
         visible={modalVisible}
-        addGoalHandler={addGoalHandler}
+        onAddGoal={addGoalHandler}
+        onCancel={cancelGoalAddition}
       />
       <FlatList
         keyExtractor={(item,index) => item.id}
