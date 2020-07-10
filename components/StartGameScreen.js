@@ -1,29 +1,38 @@
-import React from "react";
-import { View, StyleSheet, Text, Button } from "react-native";
+import React, { useState } from "react";
+import { View, StyleSheet, Text, Button, TouchableWithoutFeedback, Keyboard} from "react-native";
 import Card from "./Card";
 import Input from "./Input"
 import Color from "../constants/colors";
 
 
 const StartGameScreen = (props) => {
+  const [enteredValue, setEnteredValue] = useState('')
+  const numberInputHandler = inputText => {
+    setEnteredValue(inputText.replace(/[^0-9]/g, ''))
+  }
     return(
-      <View style={styles.screen}>
-        <Text style={styles.title}>Start  a New Game</Text>
-        <Card style={styles.inputContainer}>
-          <Text>Select a Number</Text>
-          <Input style={styles.input} maxLength={2}
-                                      keyboardType="numeric"
-                                      autoCapitalize="none"
-                                      autoCorrect={false}
-                                      blurOnSubmit
-                                      />
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        <View style={styles.screen}>
+          <Text style={styles.title}>Start  a New Game</Text>
+            <Card style={styles.inputContainer}>
+            <Text>Select a Number</Text>
+            <Input style={styles.input} 
+                   maxLength={2}
+                   keyboardType="number-pad"
+                   autoCapitalize="none"
+                   autoCorrect={false}
+                   blurOnSubmit
+                   onChangeText={numberInputHandler}
+                   value={enteredValue}
+                                        />
 
-          <View style={styles.buttonContainer}>
-            <View><Button title="Reset" onPress={() => {}} color={Color.accent}/></View>
-            <View><Button title="Confirm" onPress={() =>{}} color={Color.primary}/></View>
-          </View>
-        </Card>
-      </View>
+            <View style={styles.buttonContainer}>
+              <View><Button title="Reset" onPress={() => {}} color={Color.accent}/></View>
+              <View><Button title="Confirm" onPress={() =>{}} color={Color.primary}/></View>
+            </View>
+          </Card>
+        </View>
+      </TouchableWithoutFeedback>
     )    
 }
 
