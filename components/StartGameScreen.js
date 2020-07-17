@@ -80,7 +80,8 @@ const styles = StyleSheet.create({
     },
     title:{
         fontSize:20,
-        marginVertical:10
+        marginVertical:10,
+        fontFamily:'rubik_medium',
     },
     inputContainer:{
         width:300,
