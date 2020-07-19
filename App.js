@@ -10,6 +10,7 @@ import { AppLoading } from "expo";
 const fetchFonts = () => {
     return Font.loadAsync({
         'rubik_medium': require('./assets/fonts/rubik_medium.ttf'),
+        'rubik_regular':require('./assets/fonts/rubik_regular.ttf'),
                      
     });
 };
@@ -44,7 +45,10 @@ export default function App (){
         setGuessRounds(numOfRounds);
     }
 
+
+
     let content = <StartGameScreen onStartGame={startGameHandler}/>;
+   
     if(userNumber && guessRounds<=0){
         content = <GameScreen userChoice={userNumber} onGameOver={gameOverHandler}/>
     }else if (guessRounds>0){

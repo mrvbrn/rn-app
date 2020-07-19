@@ -4,7 +4,7 @@ import Card from "./Card";
 import Input from "./Input"
 import Color from "../constants/colors";
 import NumberContainer from "./NumberContainer";
-
+import BodyText from "./BodyText";
 
 const StartGameScreen = (props) => {
   const [enteredValue, setEnteredValue] = useState('')
@@ -36,7 +36,7 @@ const StartGameScreen = (props) => {
   if(confirmedValue){
     confirmedOutput = 
       <Card style={styles.summaryContainer}>
-        <Text> You Selected</Text>
+        <BodyText> You Selected</BodyText>
         <NumberContainer>
             {selectedNumber}
         </NumberContainer>
@@ -50,7 +50,7 @@ const StartGameScreen = (props) => {
         <View style={styles.screen}>
           <Text style={styles.title}>Start  a New Game</Text>
             <Card style={styles.inputContainer}>
-            <Text>Select a Number</Text>
+            <BodyText>Select a Number</BodyText>
             <Input style={styles.input} 
                    maxLength={2}
                    keyboardType="number-pad"
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
       marginTop:20,
       alignItems:'center',
 
-    }
+    },
 })
 
 
