@@ -4,6 +4,8 @@ import Card from "./Card";
 import Input from "./Input"
 import Color from "../constants/colors";
 import NumberContainer from "./NumberContainer";
+import BodyText from "./BodyText";
+import MainButton from "./MainButton";
 
 
 const StartGameScreen = (props) => {
@@ -36,11 +38,13 @@ const StartGameScreen = (props) => {
   if(confirmedValue){
     confirmedOutput = 
       <Card style={styles.summaryContainer}>
-        <Text> You Selected</Text>
+        <BodyText> You Selected</BodyText>
         <NumberContainer>
             {selectedNumber}
         </NumberContainer>
-        <Button title="Start Game" onPress={()=>props.onStartGame(selectedNumber)}/>
+        <MainButton onPress={()=>props.onStartGame(selectedNumber)}>
+          START GAME
+        </MainButton>
       </Card>
   }
 
@@ -50,7 +54,7 @@ const StartGameScreen = (props) => {
         <View style={styles.screen}>
           <Text style={styles.title}>Start  a New Game</Text>
             <Card style={styles.inputContainer}>
-            <Text>Select a Number</Text>
+            <BodyText>Select a Number</BodyText>
             <Input style={styles.input} 
                    maxLength={2}
                    keyboardType="number-pad"
@@ -80,7 +84,8 @@ const styles = StyleSheet.create({
     },
     title:{
         fontSize:20,
-        marginVertical:10
+        marginVertical:10,
+        fontFamily:'rubik_medium',
     },
     inputContainer:{
         width:300,
@@ -105,7 +110,7 @@ const styles = StyleSheet.create({
       marginTop:20,
       alignItems:'center',
 
-    }
+    },
 })
 
 

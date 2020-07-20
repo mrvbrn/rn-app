@@ -26,7 +26,8 @@ const styles = StyleSheet.create({
     },
     headerTitle:{
         fontSize:18,
-        color:'black'
+        color:'black',
+        fontFamily:'rubik_medium',
     }
 })
 
