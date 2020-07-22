@@ -6,6 +6,7 @@ import MainButton from "./MainButton";
 import { Ionicons } from "@expo/vector-icons";
 import BodyText from "./BodyText";
 
+
 const generateRandomBetween = (min, max, exclude) => {
     min = Math.ceil(min)
     max= Math.floor(max)
@@ -64,15 +65,11 @@ const GameScreen = props => {
           <Text>Opponent's Guess</Text>
           <NumberContainer>{currentGuess}</NumberContainer>
           <Card style={styles.buttonContainer}>
-            <MainButton onPress={nextGuessHandler.bind(this,'lower')}>
-              <Ionicons name="md-remove"/>
-            </MainButton>
-            <MainButton onPress={nextGuessHandler.bind(this,'greater')}>
-              <Ionicons name="md-add"/>
-            </MainButton>
+            <MainButton onPress={nextGuessHandler.bind(this,'lower')}>LOWER</MainButton>
+            <MainButton onPress={nextGuessHandler.bind(this,'greater')}>GREATER</MainButton>
           </Card>
-          <View style={styles.list}>
-            <ScrollView>
+          <View style={styles.listContainer}>
+            <ScrollView contentContainerStyle={styles.list}>
               {pastGuesses.map((guess, index) => renderListItem(guess, pastGuesses.length-index))}
             </ScrollView>
           </View>
@@ -92,14 +89,18 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         justifyContent:'space-around',
         marginTop:20,
-        width:300,
-        maxWidth:'80%',
         width:400,
         maxWidth:'90%'
     },
-    list:{
+    listContainer:{
         width:'80%',
         flex:1
+    },
+    list:{
+        alignItems:'center',
+        justifyContent:'flex-end',
+        flexGrow:1
+
     },
     listItem:{
         borderColor:'#ccc',
@@ -108,7 +109,9 @@ const styles = StyleSheet.create({
         marginVertical:10,
         backgroundColor:'white',
         flexDirection:'row',
-        justifyContent:'space-between'
+        justifyContent:'space-between',
+        width:'60%',
+
 
     }
 
