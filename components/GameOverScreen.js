@@ -3,13 +3,14 @@ import { View, Text, StyleSheet, Image} from "react-native";
 import BodyText from "./BodyText";
 import Colors from "../constants/colors.js";
 import MainButton from "./MainButton";
+import MainText from "./MainText";
 
 
 
 const GameOverScreen = props => {
     return(
         <View style={styles.screen}>
-          <BodyText>The Game is Over!</BodyText>
+          <MainText>The Game is Over!</MainText>
           <Image source={require('../assets/success.png')}
                  resizeMode="contain"
                  style={styles.image}
