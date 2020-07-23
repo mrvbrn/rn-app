@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { View, Text, StyleSheet, Button, Alert, FlatList } from "react-native";
+import { View, Text, StyleSheet, Button, Alert, FlatList, Dimensions } from "react-native";
 import Card from "./Card";
 import NumberContainer from "./NumberContainer";
 import MainButton from "./MainButton";
@@ -24,6 +24,7 @@ const renderListItem = (listLength, dataItem) => (
        <BodyText>{dataItem.item}</BodyText>
     </View>
     );
+
     
 
 
@@ -33,6 +34,12 @@ const GameScreen = props => {
     const [pastGuesses, setPastGuesses] = useState([initialGuess.toString()])
     const currentLow = useRef(1)
     const currentHigh = useRef(100)
+
+    
+    let listContainerStyle = styles.listContainer;
+    if (Dimensions.get('window').width <350){
+       listContainerStyle = styles.listContainerBig;
+    }
 
     const nextGuessHandler = direction => {
         if((direction === 'lower' && currentGuess<props.userChoice) || (direction === 'greater' && currentGuess>props.userChoice)){
@@ -66,7 +73,7 @@ const GameScreen = props => {
             <MainButton onPress={nextGuessHandler.bind(this,'lower')}>LOWER</MainButton>
             <MainButton onPress={nextGuessHandler.bind(this,'greater')}>GREATER</MainButton>
           </Card>
-          <View style={styles.listContainer}>
+          <View style={listContainerStyle}>
             <FlatList
               keyExtractor={(item) => item}
               data={pastGuesses}
@@ -90,13 +97,17 @@ const styles = StyleSheet.create({
     buttonContainer:{
         flexDirection:'row',
         justifyContent:'space-around',
-        marginTop:20,
+        marginTop:Dimensions.get('window').height >600 ? 20: 10,
         width:400,
         maxWidth:'90%'
     },
     listContainer:{
         width:'60%',
         flex:1
+    },
+    listContainerBig:{
+        flex:1,
+        width:'80%'
     },
     list:{
         justifyContent:'flex-end',
