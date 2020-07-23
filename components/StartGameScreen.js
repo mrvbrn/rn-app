@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Text, Button, TouchableWithoutFeedback, Keyboard, Alert} from "react-native";
+import { View, StyleSheet, Text, Button, TouchableWithoutFeedback, Keyboard, Alert, Dimensions} from "react-native";
 import Card from "./Card";
 import Input from "./Input"
 import Color from "../constants/colors";
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
         alignItems:'center',
     },
     button:{
-        width:100
+        width:Dimensions.get('window').width/4
     },
     input:{
         width:50,
