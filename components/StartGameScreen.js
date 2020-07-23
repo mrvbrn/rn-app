@@ -88,8 +88,9 @@ const styles = StyleSheet.create({
         fontFamily:'rubik_medium',
     },
     inputContainer:{
-        width:300,
-        maxWidth:'80%',
+        width:'80%',
+        maxWidth:'95%',
+        minWidth:300,
         alignItems:'center',
     },
     button:{
