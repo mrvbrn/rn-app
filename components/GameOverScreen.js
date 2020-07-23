@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, Image} from "react-native";
+import { View, Text, StyleSheet, Image, Dimensions} from "react-native";
 import BodyText from "./BodyText";
 import Colors from "../constants/colors.js";
 import MainButton from "./MainButton";
@@ -11,10 +11,10 @@ const GameOverScreen = props => {
     return(
         <View style={styles.screen}>
           <MainText>The Game is Over!</MainText>
-          <Image source={require('../assets/success.png')}
+             <Image source={require('../assets/success.png')}
                  resizeMode="contain"
                  style={styles.image}
-          />
+             />
           <View style={styles.resultContainer}>
             <BodyText style={styles.textResult}>Your phone needed  
               <Text style={styles.highlight}> {props.roundsNumber}</Text> rounds to guess the number  
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         justifyContent:'center'
     },
     image:{
-        width:"80%",
+        width:300,
         height:300,
 
     },
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     },
     resultContainer:{
         marginHorizontal:30,
-        marginVertical:15
+        marginVertical:Dimensions.get('window').height/60
     }
 })
 

@@ -11,7 +11,8 @@ const MainText = props => {
 
 const styles = StyleSheet.create({
     text:{
-        fontFamily:'rubik_medium'
+        fontFamily:'rubik_medium',
+        fontSize:20
     }
 })
 
