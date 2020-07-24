@@ -11,10 +11,12 @@ const GameOverScreen = props => {
     return(
         <View style={styles.screen}>
           <MainText>The Game is Over!</MainText>
+            <View style={styles.imageContainer}>
              <Image source={require('../assets/success.png')}
                  resizeMode="contain"
                  style={styles.image}
              />
+            </View>
           <View style={styles.resultContainer}>
             <BodyText style={styles.textResult}>Your phone needed  
               <Text style={styles.highlight}> {props.roundsNumber}</Text> rounds to guess the number  
@@ -37,6 +39,8 @@ const styles = StyleSheet.create({
     image:{
         width:300,
         height:300,
+        marginVertical: Dimensions.get('window').width/60
+
 
     },
     highlight:{
@@ -47,9 +51,15 @@ const styles = StyleSheet.create({
         textAlign:'center',
         fontSize:20
     },
+    imageContainer:{
+      marginVertical: Dimensions.get('window').width/30,
+      width:Dimensions.get('window').width*0.7,
+      height:Dimensions.get('window').width*0.7,
+
+    },
     resultContainer:{
-        marginHorizontal:30,
-        marginVertical:Dimensions.get('window').height/60
+        marginHorizontal:10,
+        marginVertical:Dimensions.get('window').height/60,
     }
 })
 
