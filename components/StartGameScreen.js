@@ -70,6 +70,38 @@ const StartGameScreen = (props) => {
       </Card>
   }
 
+  if(Dimensions.get('window').width <500 ){
+    return(
+      <ScrollView>
+        <KeyboardAvoidingView behaviour="position" keyboardVerticalOffset={30}>
+          <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+          <View style={styles.screen}>
+            <Text style={styles.title}>Start  a New Game</Text>
+              <BodyText>Select a Number</BodyText>
+              <Input style={styles.input} 
+                     maxLength={2}
+                     keyboardType="number-pad"
+                     autoCapitalize="none"
+                     autoCorrect={false}
+                     blurOnSubmit
+                     onChangeText={numberInputHandler}
+                     value={enteredValue}
+                                          />
+
+              <View style={styles.buttonContainer}>
+                <View style={{buttonWidth}}><Button title="Reset" onPress={resetInputHandler} color={Color.accent}/></View>
+                <View style={{buttonWidth}}><Button title="Confirm" onPress={confirmInputHandler} color={Color.primary}/></View>
+              </View>
+            {confirmedOutput}
+          </View>
+          </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
+      </ScrollView>
+      
+    )    
+
+  }
+
 
     return(
       <ScrollView>
