@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View,
          StyleSheet, 
          Text, 
@@ -22,6 +22,18 @@ const StartGameScreen = (props) => {
   const [enteredValue, setEnteredValue] = useState('')
   const [confirmedValue, setConfirmedValue] = useState(false)
   const [selectedNumber, setSelectedNumber] = useState('')
+  const [buttonWidth, setButtonWidth] = useState(Dimensions.get('window').width/5)
+
+
+  useEffect(() => {
+    const updateLayout = () =>{
+      setButtonWidth(Dimensions.get('window').width/4);
+    }
+    Dimensions.addEventListener('change', updateLayout);
+    return () => {
+      Dimensions.removeEventListener('change', updateLayout);
+    };
+  });
 
   const numberInputHandler = inputText => {
     setEnteredValue(inputText.replace(/[^0-9]/g, ''))
@@ -78,8 +90,8 @@ const StartGameScreen = (props) => {
                                           />
 
               <View style={styles.buttonContainer}>
-                <View><Button title="Reset" onPress={resetInputHandler} color={Color.accent}/></View>
-                <View><Button title="Confirm" onPress={confirmInputHandler} color={Color.primary}/></View>
+                <View style={{buttonWidth}}><Button title="Reset" onPress={resetInputHandler} color={Color.accent}/></View>
+                <View style={{buttonWidth}}><Button title="Confirm" onPress={confirmInputHandler} color={Color.primary}/></View>
               </View>
             </Card>
             {confirmedOutput}
