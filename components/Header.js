@@ -1,6 +1,7 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import Color from "../constants/colors";
+import { View, Text, StyleSheet, Platform } from "react-native";
+import MainText from "./MainText";
+import Colors from "../constants/colors";
 
 
 
@@ -8,26 +9,40 @@ import Color from "../constants/colors";
 
 const Header = props => {
     return(
-        <View style={styles.header}>
-          <Text style={styles.headerTitle}>{props.title}</Text>
+        <View style={{...styles.headerBase, ...Platform.select({
+            ios: styles.headerIos,
+            android: styles.headerAndroid
+        })}}>
+          <MainText style={styles.headerTitle}>{props.title}</MainText>
         </View>
     )
 }
 
 
 const styles = StyleSheet.create({
-    header:{
+    headerBase:{
         width:'100%',
         height:90,
         paddingTop:36,
         alignItems:'center',
         justifyContent:'center',
-        backgroundColor:Color.primary,
+       
+
+    },
+    headerIos:{
+        backgroundColor: 'white',
+        borderBottomColor:'#ccc',
+        borderBottomWidth:1,
+
+    },
+    headerAndroid:{
+        backgroundColor: Colors.primary,
+        borderBottomColor:'transparent',
+        borderBottomWidth:0,
+
     },
     headerTitle:{
-        fontSize:18,
-        color:'black',
-        fontFamily:'rubik_medium',
+        color: Platform.OS === 'ios' ? Colors.primary : 'white'
     }
 })
 
